@@ -182,7 +182,8 @@ create procedure `sp_boletim_turma` (
 		b.nota3,
 		b.nota4,
 		truncate( ( b.nota1 + b.nota2 + b.nota3 + b.nota4 ) / 4, 1 ) as media,
-		if ( truncate( ( b.nota1 + b.nota2 + b.nota3 + b.nota4 ) / 4, 1 ) >= 6, "A", "R" ) as resultado
+		if ( truncate( ( b.nota1 + b.nota2 + b.nota3 + b.nota4 ) / 4, 1 ) >= 6, "A", "R" ) as resultado,
+		b.faltas
 	from ((boletim b
 		inner join aluno a on a.alunoId = b.alunoId) 
 		inner join disciplinas d on d.disciplinaId = b.disciplinaId)
